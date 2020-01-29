@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 2020_01_28_235647) do
 
   create_table "events", force: :cascade do |t|
     t.string "sitecode"
-    t.time "timestart"
-    t.time "timesend"
+    t.string "timestart"
+    t.string "timesend"
     t.date "date"
     t.boolean "free"
     t.integer "park_id"
