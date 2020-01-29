@@ -17,20 +17,28 @@ states = ["md", "va", 'dc']
 
 states.each do |state|
 park_api = ENV["PARK_API_KEY"]
-get_parks  = RestClient.get("https://developer.nps.gov/api/v1/parks?stateCode=#{state}&api_key=#{park_api}")
+get_parks  = RestClient.get("https://developer.nps.gov/api/v1/parks?fields=images&stateCode=#{state}&api_key=#{park_api}")
 parks_info = JSON.parse(get_parks)["data"]
-    parks_info.each do |park|
-    Park.create(
+parks_info.each do |park|
+    if(park["images"].size == 0)
+        next
+    else
+    Park.create!(
         fullName:                       park["fullName"],
         states:                         park["states"],
         parkCode:                       park["parkCode"],
         weatherInfo:                    park["weatherInfo"],
         latLong:                        park["latLong"],
-        image_url:                      park["image_url"],
-        description:                    park["description"]
-    )
+        description:                    park["description"],
+        image_url:                      park["images"][0]["url"]
+        )
+        end
+        puts "#{park["images"][0]["url"]} was saved."
     end
 end
+
+
+
 
 
 states_event = ["md", "va", 'dc']
