@@ -1,0 +1,2 @@
+class ParkImage < ApplicationRecord
+end

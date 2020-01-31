@@ -1,13 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 require 'rest-client'
-
+require 'unsplash'
+require 'byebug'
 User.destroy_all
 Park.destroy_all
 Favorite.destroy_all
@@ -33,7 +26,6 @@ parks_info.each do |park|
         image_url:                      park["images"][0]["url"]
         )
         end
-        puts "#{park["images"][0]["url"]} was saved."
     end
 end
 
@@ -58,6 +50,15 @@ events_info = JSON.parse(get_events)["data"]
     end
 end
 
+
+image_api = ENV["SPLASH_API_KEY"]
+get_image  = RestClient.get("https://api.unsplash.com/search/photos?query=park&count=30/&client_id=#{image_api}")
+images = JSON.parse(get_image)["results"]
+    images.each do |image|
+    ParkImage.create(
+        image_url:                       image["urls"]["small"]
+    )
+end
 
 
 

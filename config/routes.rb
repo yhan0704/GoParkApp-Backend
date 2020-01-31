@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :park_images
   resources :users
   resources :favorites
   resources :events

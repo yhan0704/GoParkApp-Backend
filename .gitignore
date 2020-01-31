@@ -6,6 +6,7 @@
 
 
 .env
+/db/test.rb
 # Ignore bundler config.
 /.bundle
 
