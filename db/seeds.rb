@@ -13,7 +13,7 @@ park_api = ENV["PARK_API_KEY"]
 get_parks  = RestClient.get("https://developer.nps.gov/api/v1/parks?fields=images&stateCode=#{state}&api_key=#{park_api}")
 parks_info = JSON.parse(get_parks)["data"]
 parks_info.each do |park|
-    if(park["images"].size == 0)
+    if(park["images"].size == 0 || park["images"].size == 1)
         next
     else
     Park.create!(
@@ -23,7 +23,7 @@ parks_info.each do |park|
         weatherInfo:                    park["weatherInfo"],
         latLong:                        park["latLong"],
         description:                    park["description"],
-        image_url:                      park["images"][0]["url"]
+        image_url:                      park["images"][1]["url"]
         )
         end
     end
@@ -38,7 +38,6 @@ states_event.each do |state|
 park_api = ENV["PARK_API_KEY"]
 get_events  = RestClient.get("https://developer.nps.gov/api/v1/events?stateCode=#{state}&api_key=#{park_api}")
 events_info = JSON.parse(get_events)["data"]
-#  byebug
     events_info.each do |event|
     Event.create(
         sitecode:                       event["sitecode"],
@@ -52,7 +51,7 @@ end
 
 
 image_api = ENV["SPLASH_API_KEY"]
-get_image  = RestClient.get("https://api.unsplash.com/search/photos?query=park&count=30/&client_id=#{image_api}")
+get_image  = RestClient.get("https://api.unsplash.com/search/photos?query=trees/&client_id=#{image_api}")
 images = JSON.parse(get_image)["results"]
     images.each do |image|
     ParkImage.create(
