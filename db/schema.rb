@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_205340) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string "sitecode"
+    t.string "parkCode"
     t.string "timestart"
     t.string "timesend"
     t.date "date"

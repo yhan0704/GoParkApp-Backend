@@ -3,6 +3,7 @@ class EventsController < ApplicationController
         events = Event.all
         render json: events.to_json(serialized_data)
     end
+    
     private
 
     def serialized_data  

@@ -3,6 +3,7 @@ class UsersController < ApplicationController
         users = User.all
         render json: users.to_json(serialized_data)
     end
+
     private
 
     def serialized_data  
