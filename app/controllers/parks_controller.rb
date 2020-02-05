@@ -13,9 +13,9 @@ class ParksController < ApplicationController
     def serialized_data  
         {
             :except => [:created_at, :updated_at],
-            # :include =>  [
-            #   :events => {:except => [:created_at, :updated_at]}  
-            # ]            
+            :include =>  [
+              :events => {:except => [:created_at, :updated_at]}  
+            ]            
         }
     end
 end

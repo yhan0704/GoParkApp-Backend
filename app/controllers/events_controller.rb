@@ -1,8 +1,10 @@
 class EventsController < ApplicationController
     def index
         events = Event.all
-        render json: events.to_json(serialized_data)
+        byebug
+        render json: events
     end
+
     
     private
 

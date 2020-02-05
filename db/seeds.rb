@@ -39,17 +39,19 @@ park_api = ENV["PARK_API_KEY"]
 get_events  = RestClient.get("https://developer.nps.gov/api/v1/events?stateCode=#{state}&api_key=#{park_api}")
 events_info = JSON.parse(get_events)["data"]
     events_info.each do |event|
-        byebug
-    Event.create(
-        parkCode:                       event["sitecode"],
-        timestart:                      event["times"][0]["timestart"],
-        timesend:                       event["times"][0]["timeend"],
-        date:                           event["date"],
-        free:                           event["isfree"],
-    )
+        # byebug
+        Event.create(
+            park:                           Park.find_by(parkCode: event["sitecode"]),
+            contactname:                    event["contactname"],
+            contactemailaddress:            event["contactemailaddress"],
+            parkCode:                       event["sitecode"],
+            timestart:                      event["times"][0]["timestart"],
+            timesend:                       event["times"][0]["timeend"],
+            date:                           event["date"],
+            free:                           event["isfree"],
+            )
     end
 end
-
 
 image_api = ENV["SPLASH_API_KEY"]
 get_image  = RestClient.get("https://api.unsplash.com/search/photos?query=trees/&client_id=#{image_api}")
