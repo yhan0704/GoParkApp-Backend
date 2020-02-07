@@ -65,6 +65,6 @@ end
 
 
 
-# young = User.create(name:"young", email:"asd@gmail.com", password:"1234")
+young = User.create(name:"young", email:"asd@gmail.com", password:"1234")
 # flatiron = Park.create(fullName:"flat", states:"va", parkCode:"awe", latLong:"fewa", description:"abemaria")
 # fav= Favorite.create(visit:true, comment:"was nice", date:"2002-02-01", user_id:1, park_id:73)
