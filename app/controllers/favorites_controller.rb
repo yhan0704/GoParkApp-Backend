@@ -10,6 +10,13 @@ class FavoritesController < ApplicationController
         render json: favorite.to_json(serialized_data)
     end
 
+    def update
+        favorite = Favorite.find(params[:id])
+        favorite.update(strong_params)
+        # byebug
+        render json: favorite.to_json(serialized_data)
+    end
+
     private
     def strong_params
         params.require(:favorite).permit(:user_id, :park_id, :date, :visit, :comment)

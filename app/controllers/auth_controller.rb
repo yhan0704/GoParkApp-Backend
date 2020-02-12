@@ -15,10 +15,13 @@ class AuthController < ApplicationController
         {
             :except => [:created_at, :updated_at],
             :include =>  [ 
-                :favorites => {:except => [:created_at, :updated_at]},
-                :parks => {:except => [:created_at, :updated_at]}
-              ] 
-        }
+                :favorites => {:except => [:created_at, :updated_at], 
+                    :include => [
+                    :park => {:except => [:created_at, :updated_at]}
+                    ]}
+                ] 
+            }
+        
     end
 
 end
