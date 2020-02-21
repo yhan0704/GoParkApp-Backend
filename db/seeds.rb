@@ -1,5 +1,6 @@
 require 'rest-client'
 require 'unsplash'
+require 'byebug'
 
 User.destroy_all
 Park.destroy_all
