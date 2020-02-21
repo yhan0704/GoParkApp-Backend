@@ -5,9 +5,14 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.create(user_params)
-        # byebug
-        render json: User.find_by(name: params[:username])    
+        @user = User.create(user_params)
+        if @user.valid?
+            render json: User.find_by(name: params[:username])  
+        else
+            render json: {
+                error:true,
+            }, status: :bad_request
+        end 
     end
     private
 

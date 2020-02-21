@@ -7,7 +7,14 @@ class AuthController < ApplicationController
 
     def create
         user = User.find_by(name: params[:username])
-        render json: user.to_json(serialized_data)
+        if user && user.authenticate(params[:password])
+            # byebug
+                render json: user.to_json(serialized_data)
+        else
+            render json: {
+                error:true,
+            }, status: :bad_request
+        end
     end
 
     private
