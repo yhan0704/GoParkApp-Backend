@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
     def index
         events = Event.all
-        byebug
         render json: events
     end
 
