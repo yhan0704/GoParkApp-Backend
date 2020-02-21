@@ -60,6 +60,7 @@ GEM
     bootsnap (1.4.5)
       msgpack (~> 1.0)
     builder (3.2.4)
+    byebug (11.1.1)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     domain_name (0.5.20190701)
@@ -192,6 +193,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.5)
+  byebug
   dotenv-rails
   jwt
   listen (>= 3.0.5, < 3.2)
